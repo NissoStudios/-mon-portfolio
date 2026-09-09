@@ -1,5 +1,6 @@
 import "./globals.css";
 import type {Metadata} from "next";
+import {Analytics} from "@vercel/analytics/next";
 
 const SITE_URL="https://nissostudios.com";
 
@@ -52,6 +53,6 @@ export default function RootLayout({children}:{children:React.ReactNode}){
   <head>
    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(personJsonLd)}}/>
   </head>
-  <body>{children}</body>
+  <body>{children}<Analytics/></body>
  </html>
 }
