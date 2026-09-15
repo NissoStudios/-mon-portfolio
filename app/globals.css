@@ -1,13 +1,60 @@
 @import "tailwindcss";
-:root{color-scheme:dark}
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root{
+ color-scheme:light;
+ --bg:#f6f7f9;
+ --bg-elevated:#ffffff;
+ --fg:#0b1220;
+ --fg-muted:#4b5563;
+ --fg-subtle:#6b7280;
+ --border:rgba(11,18,32,.12);
+ --border-strong:rgba(11,18,32,.22);
+ --accent:#0e7490;
+ --accent-soft-bg:rgba(14,116,144,.08);
+ --accent-soft-border:rgba(14,116,144,.25);
+ --surface-subtle:rgba(11,18,32,.03);
+ --glass-bg:rgba(255,255,255,.72);
+ --nav-bg:rgba(246,247,249,.8);
+ --btn-primary-bg:#0b1220;
+ --btn-primary-fg:#f6f7f9;
+ --grid-line:rgba(11,18,32,.05);
+ --whatsapp-fg:#047857;
+ --whatsapp-border:rgba(4,120,87,.35);
+}
+.dark{
+ color-scheme:dark;
+ --bg:#05070b;
+ --bg-elevated:#0b0f16;
+ --fg:#eef2f7;
+ --fg-muted:#94a3b8;
+ --fg-subtle:#64748b;
+ --border:rgba(255,255,255,.08);
+ --border-strong:rgba(255,255,255,.18);
+ --accent:#22d3ee;
+ --accent-soft-bg:rgba(34,211,238,.10);
+ --accent-soft-border:rgba(34,211,238,.20);
+ --surface-subtle:rgba(255,255,255,.015);
+ --glass-bg:rgba(11,15,22,.72);
+ --nav-bg:rgba(5,7,11,.75);
+ --btn-primary-bg:#ffffff;
+ --btn-primary-fg:#000000;
+ --grid-line:rgba(255,255,255,.035);
+ --whatsapp-fg:#6ee7b7;
+ --whatsapp-border:rgba(52,211,153,.3);
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#05070b;color:#eef2f7;font-family:Inter,ui-sans-serif,system-ui,sans-serif}
-.grid-bg{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px}
-.glass{background:rgba(11,15,22,.72);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui,sans-serif;transition:background-color .2s ease,color .2s ease}
+.grid-bg{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:48px 48px}
+.glass{background:var(--glass-bg);backdrop-filter:blur(18px);border:1px solid var(--border)}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 ::selection{background:#22d3ee;color:#041016}
-@media (min-width:768px) and (pointer:fine){a,button{cursor:none}}
+@media (min-width:768px) and (pointer:fine){.dark a,.dark button{cursor:none}}
+.star-field,.liquid-scene{display:none}
+.dark .star-field,.dark .liquid-scene{display:block}
+.custom-cursor{visibility:hidden}
+.dark .custom-cursor{visibility:visible}
 @keyframes fall{0%{transform:translateY(0);opacity:0}8%{opacity:.9}85%{opacity:.4}100%{transform:translateY(115vh);opacity:0}}
 @keyframes drift1{0%,100%{transform:translate(0,0) scale(1);border-radius:42% 58% 65% 35%/45% 40% 60% 55%}33%{transform:translate(70px,40px) scale(1.15);border-radius:58% 42% 35% 65%/55% 65% 35% 45%}66%{transform:translate(-30px,60px) scale(.95);border-radius:35% 65% 55% 45%/40% 55% 45% 60%}}
 @keyframes drift2{0%,100%{transform:translate(0,0) scale(1);border-radius:55% 45% 40% 60%/50% 60% 40% 50%}50%{transform:translate(-60px,-35px) scale(1.12);border-radius:40% 60% 60% 40%/60% 45% 55% 40%}}
