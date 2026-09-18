@@ -28,7 +28,7 @@ export const projects: ProjectCaseStudy[] = [
     title: "E-COMMERCIAL",
     icon: Database,
     demoId: "ecommercial",
-    sourcePath: REPO_BASE + "app/page.tsx",
+    sourcePath: REPO_BASE + "components/demos/ECommercialDemo.tsx",
     featured: true,
     client: "SOSUCAM",
     tech: ["PHP", "SQL Server", "HTML/CSS"],

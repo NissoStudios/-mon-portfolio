@@ -133,7 +133,7 @@ export default function Home() {
                         <PlayCircle size={14} /> {t.featured.launchDemo}
                       </button>
                       <Link
-                        href={`/projects#${p.id}`}
+                        href={`/projects/${p.id}`}
                         className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] text-[var(--fg-muted)] px-4 py-2 text-xs font-semibold hover:text-[var(--fg)] transition-colors"
                       >
                         {t.featured.viewCaseStudy} <ArrowUpRight size={13} />
@@ -229,6 +229,12 @@ export default function Home() {
                       >
                         <PlayCircle size={14} /> {t.work.launchDemo}
                       </button>
+                      <Link
+                        href={`/projects/${p.id}`}
+                        className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--fg-muted)] hover:text-[var(--accent)] transition-colors w-fit"
+                      >
+                        {t.featured.viewCaseStudy} <ArrowUpRight size={13} />
+                      </Link>
                     </article>
                   </Reveal>
                 );

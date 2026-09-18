@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, PlayCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, PlayCircle } from "lucide-react";
 import { SceneBackdrop, Reveal } from "../site/decor";
 import { SiteNav } from "../site/site-nav";
 import { SiteFooter, FloatingWhatsappButton } from "../site/site-footer";
@@ -66,9 +66,15 @@ function ProjectCard({ project, onLaunch }: { project: ProjectCaseStudy; onLaunc
       </div>
 
       <div className="flex flex-wrap gap-3 mt-8">
+        <Link
+          href={`/projects/${project.id}`}
+          className="inline-flex items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-5 py-2.5 text-sm font-semibold glow-hover"
+        >
+          {t.featured.viewCaseStudy} <ArrowRight size={15} />
+        </Link>
         <button
           onClick={() => onLaunch(project.id)}
-          className="inline-flex items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-5 py-2.5 text-sm font-semibold glow-hover"
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-soft-border)] text-[var(--accent)] px-5 py-2.5 text-sm font-semibold hover:bg-[var(--accent-soft-bg)] transition-colors"
         >
           <PlayCircle size={16} /> {t.projectsPage.launchDemo}
         </button>
