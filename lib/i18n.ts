@@ -21,6 +21,7 @@ export interface Dictionary {
     description: string;
     exploreWork: string;
     connect: string;
+    downloadCv: string;
     basedIn: string;
     builtFor: string;
   };
@@ -125,6 +126,7 @@ export const dictionary: Record<Lang, Dictionary> = {
         "Étudiant en génie logiciel à l'ICT University et développeur sensibilisé à la cybersécurité, je construis des applications web, mobiles et métier utiles, avec un vrai souci de fonctionnalité, de sécurité et d'impact concret.",
       exploreWork: "Découvrir mes projets",
       connect: "Discutons",
+      downloadCv: "Télécharger mon CV",
       basedIn: "BASÉ AU CAMEROUN · JE CONSTRUIS POUR LE MONDE RÉEL",
       builtFor: "APPLICATIONS CONÇUES POUR SOSUCAM · SECRÉTARIAT OUSY · MOBILE SIX (STARTUP)",
     },
@@ -206,10 +208,10 @@ export const dictionary: Record<Lang, Dictionary> = {
       titleLead: "Les outils sont le moyen. ",
       titleHighlight: "L'ingénierie est la compétence.",
       groups: [
-        { title: "GÉNIE LOGICIEL", items: ["PHP", "JavaScript", "React", "Next.js", "Python", "Java", "C++"] },
-        { title: "BASES DE DONNÉES", items: ["Microsoft SQL Server", "MySQL", "Modélisation relationnelle"] },
-        { title: "MOBILE & APIs", items: ["Android", "Kotlin", "Flutter", "Dart", "Mapbox", "APIs REST"] },
-        { title: "SÉCURITÉ", items: ["Authentification", "Autorisation", "Intégrité des données", "SHA-256", "HMAC", "Requêtes préparées"] },
+        { title: "GÉNIE LOGICIEL", items: ["PHP", "React", "Next.js", "Python", "Java", "C++"] },
+        { title: "BASES DE DONNÉES", items: ["Microsoft SQL Server", "MySQL", "Supabase", "Modélisation relationnelle"] },
+        { title: "MOBILE & APIs", items: ["Android", "Kotlin", "Flutter", "Dart", "APIs REST"] },
+        { title: "SÉCURITÉ", items: ["Authentification", "RBAC", "Intégrité des données", "SHA-256", "HMAC", "Requêtes préparées"] },
       ],
     },
     philosophy: {
@@ -278,6 +280,7 @@ export const dictionary: Record<Lang, Dictionary> = {
         "Software engineering student at ICT University and cybersecurity-minded developer building useful web, mobile and business solutions with a focus on functionality, security and real-world impact.",
       exploreWork: "Explore my work",
       connect: "Let's connect",
+      downloadCv: "Download my CV",
       basedIn: "BASED IN CAMEROON · BUILDING FOR THE REAL WORLD",
       builtFor: "APPS DESIGNED FOR SOSUCAM · SECRÉTARIAT OUSY · MOBILE SIX (STARTUP)",
     },
@@ -359,10 +362,10 @@ export const dictionary: Record<Lang, Dictionary> = {
       titleLead: "Tools are the means. ",
       titleHighlight: "Engineering is the skill.",
       groups: [
-        { title: "SOFTWARE ENGINEERING", items: ["PHP", "JavaScript", "React", "Next.js", "Python", "Java", "C++"] },
-        { title: "DATABASES", items: ["Microsoft SQL Server", "MySQL", "Relational design"] },
-        { title: "MOBILE & APIs", items: ["Android", "Kotlin", "Flutter", "Dart", "Mapbox", "REST APIs"] },
-        { title: "SECURITY", items: ["Authentication", "Authorization", "Data integrity", "SHA-256", "HMAC", "Prepared queries"] },
+        { title: "SOFTWARE ENGINEERING", items: ["PHP", "React", "Next.js", "Python", "Java", "C++"] },
+        { title: "DATABASES", items: ["Microsoft SQL Server", "MySQL", "Supabase", "Relational design"] },
+        { title: "MOBILE & APIs", items: ["Android", "Kotlin", "Flutter", "Dart", "REST APIs"] },
+        { title: "SECURITY", items: ["Authentication", "RBAC", "Data integrity", "SHA-256", "HMAC", "Prepared queries"] },
       ],
     },
     philosophy: {

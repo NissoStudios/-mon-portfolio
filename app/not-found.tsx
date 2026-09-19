@@ -34,7 +34,7 @@ export default function NotFound() {
       <div className="relative z-10 flex min-h-screen flex-col">
         <SiteNav variant="projects" />
         <section className="grid-bg flex flex-1 items-center pt-28 pb-16">
-          <div className="max-w-3xl mx-auto px-5 w-full">
+          <div className="site-container">
             <div className="mono text-xs tracking-[.2em] text-[var(--accent)]">{t.eyebrow}</div>
             <h1 className="text-4xl sm:text-6xl font-black tracking-[-.04em] text-[var(--fg)] mt-5">
               {t.title}
@@ -45,7 +45,7 @@ export default function NotFound() {
             <div className="flex flex-wrap gap-3 mt-9">
               <Link
                 href="/projects"
-                className="rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-6 py-3 font-semibold glow-hover"
+                className="rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-6 py-3 font-semibold"
               >
                 {t.projects}
               </Link>

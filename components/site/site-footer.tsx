@@ -8,7 +8,7 @@ export function SiteFooter() {
   const { t } = useLanguage();
   return (
     <footer className="border-t border-[var(--border)] py-8">
-      <div className="max-w-6xl mx-auto px-5 flex flex-col md:flex-row gap-3 justify-between text-sm text-[var(--fg-subtle)]">
+      <div className="site-container flex flex-col md:flex-row gap-3 justify-between text-sm text-[var(--fg-subtle)]">
         <div className="font-black text-[var(--fg-muted)]">
           NISSO STUDIOS<span className="text-[var(--accent)]">.</span>
         </div>

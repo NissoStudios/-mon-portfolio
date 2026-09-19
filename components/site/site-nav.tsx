@@ -23,8 +23,8 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "projects" })
   const desktopLinks = sectionLinks.filter((l) => l.label !== t.nav.contact);
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur-xl" aria-label="Primary navigation">
-      <div className="max-w-6xl mx-auto px-5 min-h-[64px] md:min-h-[72px] flex items-center justify-between gap-3">
+    <nav className="fixed top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--nav-bg)]" aria-label="Primary navigation">
+      <div className="site-container min-h-[64px] md:min-h-[72px] flex items-center justify-between gap-3">
         <Link href="/" className="font-black text-lg md:text-xl shrink-0 whitespace-nowrap text-[var(--fg)]">
           NISSO STUDIOS<span className="text-[var(--accent)]">.</span>
         </Link>
@@ -33,7 +33,7 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "projects" })
             <a key={l.href} href={l.href} className="whitespace-nowrap hover:text-[var(--fg)] transition-colors">{l.label}</a>
           ))}
           <Link href="/projects" className="whitespace-nowrap hover:text-[var(--fg)] transition-colors">{t.nav.projects}</Link>
-          <a href={`${prefix}contact`} className="whitespace-nowrap rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-4 py-2 font-semibold glow-hover">
+          <a href={`${prefix}contact`} className="whitespace-nowrap rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-4 py-2 font-semibold">
             {t.nav.cta}
           </a>
           <div className="flex items-center gap-1.5 pl-2 border-l border-[var(--border)]">

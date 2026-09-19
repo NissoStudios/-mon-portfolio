@@ -1,10 +1,9 @@
 "use client";
 import { useCallback, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, PlayCircle } from "lucide-react";
-import { SceneBackdrop, Reveal, Cube3D } from "../components/site/decor";
+import { ArrowDown, ArrowUpRight, Download, PlayCircle } from "lucide-react";
+import { FloatingPortrait, Reveal, SceneBackdrop } from "../components/site/decor";
 import { SiteNav } from "../components/site/site-nav";
 import { SiteFooter, FloatingWhatsappButton, WHATSAPP_LINK } from "../components/site/site-footer";
 import { DemoModal } from "../components/site/demo-registry";
@@ -22,15 +21,15 @@ function LogoMarquee() {
   const { t } = useLanguage();
   const loop = [...logos, ...logos];
   return (
-    <div className="border-y border-[var(--border)] bg-[var(--surface-subtle)] py-7 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-5 mb-4">
+    <div className="marquee-window border-y border-[var(--border)] bg-[var(--surface-subtle)] py-7 overflow-hidden">
+      <div className="site-container mb-4">
         <span className="mono text-[11px] text-[var(--fg-subtle)] tracking-[.2em]">{t.builtForStrip.label}</span>
       </div>
-      <div className="flex overflow-hidden">
-        <div className="flex items-center gap-14 marquee-track shrink-0 pr-14">
-          {loop.map((l, i) => (
-            <div key={`${l.src}-${i}`} aria-hidden={i >= logos.length} className="shrink-0 bg-white/95 rounded-xl px-5 py-3 flex items-center justify-center h-16 w-40">
-              <Image src={l.src} alt={i < logos.length ? l.alt : ""} width={l.width} height={l.height} className="max-h-10 max-w-full object-contain" />
+      <div className="overflow-hidden" aria-label={t.builtForStrip.label}>
+        <div className="marquee-track items-center gap-8 pr-8">
+          {loop.map((logo, index) => (
+            <div key={`${logo.src}-${index}`} aria-hidden={index >= logos.length} className="shrink-0 bg-white rounded-xl px-5 py-3 flex items-center justify-center h-16 w-40">
+              <Image src={logo.src} alt={index < logos.length ? logo.alt : ""} width={logo.width} height={logo.height} className="max-h-10 max-w-full object-contain" />
             </div>
           ))}
         </div>
@@ -41,7 +40,6 @@ function LogoMarquee() {
 
 export default function Home() {
   const [activeDemo, setActiveDemo] = useState<string | null>(null);
-  const reduceMotion = useReducedMotion();
   const { lang, t } = useLanguage();
   const closeDemo = useCallback(() => setActiveDemo(null), []);
   const activeProject = projects.find((p) => p.id === activeDemo);
@@ -55,7 +53,7 @@ export default function Home() {
 
         <section className="min-h-screen grid-bg flex items-center pt-24 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_70%_35%,rgba(34,211,238,.10),transparent_30%)]" />
-          <div className="max-w-6xl mx-auto px-5 py-16 md:py-24 w-full grid lg:grid-cols-[1.15fr_.85fr] gap-14 items-center">
+          <div className="site-container py-16 md:py-24 w-full grid lg:grid-cols-[1.15fr_.85fr] gap-14 items-center">
             <div>
               <div className="mono text-xs tracking-[.22em] text-[var(--accent)] mb-7">{t.hero.eyebrow}</div>
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-[-.05em] leading-[.95] text-[var(--fg)]">
@@ -63,11 +61,14 @@ export default function Home() {
               </h1>
               <p className="text-base md:text-xl text-[var(--fg-muted)] max-w-2xl mt-7 leading-relaxed">{t.hero.description}</p>
               <div className="flex flex-wrap gap-3 mt-9">
-                <a href="#work" className="rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-6 py-3 font-semibold glow-hover">
+                <a href="#work" className="rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-6 py-3 font-semibold">
                   {t.hero.exploreWork} <ArrowDown className="inline ml-1" size={17} />
                 </a>
-                <a href="#contact" className="rounded-full border border-[var(--border)] text-[var(--fg)] px-6 py-3 font-semibold glow-hover">
+                <a href="#contact" className="rounded-full border border-[var(--border)] text-[var(--fg)] px-6 py-3 font-semibold">
                   {t.hero.connect}
+                </a>
+                <a href="/cv/nisso-emmanuel-franky-cv.pdf" download className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] text-[var(--fg)] px-6 py-3 font-semibold">
+                  <Download size={17} /> {t.hero.downloadCv}
                 </a>
               </div>
               <div className="mono text-xs text-[var(--fg-subtle)] mt-10 space-y-1.5">
@@ -75,12 +76,7 @@ export default function Home() {
                 <div>{t.hero.builtFor}</div>
               </div>
             </div>
-            <motion.div
-              animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              className="hero-portrait relative mx-auto max-w-[320px] lg:max-w-none w-full"
-            >
-              <div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-cyan-300/25 via-cyan-500/10 to-transparent blur-2xl pointer-events-none" />
+            <FloatingPortrait>
               <div className="glass relative rounded-[2rem] p-3">
                 <div className="relative rounded-[1.6rem] overflow-hidden aspect-[4/5]">
                   <Image
@@ -94,18 +90,18 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-transparent to-transparent" />
                   <div className="absolute inset-0 opacity-[.05] pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(0deg,#fff 0px,#fff 1px,transparent 1px,transparent 3px)" }} />
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                    <span className="mono text-[10px] text-cyan-300 bg-black/50 backdrop-blur px-2.5 py-1.5 rounded-full border border-cyan-300/20">OPERATOR</span>
-                    <span className="mono text-[10px] text-slate-300 bg-black/50 backdrop-blur px-2.5 py-1.5 rounded-full border border-white/10">NISSO STUDIOS</span>
+                    <span className="mono text-[10px] text-cyan-300 bg-black/50 px-2.5 py-1.5 rounded-full border border-cyan-300/20">OPERATOR</span>
+                    <span className="mono text-[10px] text-slate-300 bg-black/50 px-2.5 py-1.5 rounded-full border border-white/10">NISSO STUDIOS</span>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </FloatingPortrait>
           </div>
         </section>
 
         <LogoMarquee />
 
-        <section className="max-w-6xl mx-auto px-5 py-20 md:py-28">
+        <section className="site-container py-20 md:py-28">
           <Reveal>
             <div className="mono text-xs text-[var(--accent)]">{t.featured.eyebrow}</div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-4 text-[var(--fg)]">
@@ -128,7 +124,7 @@ export default function Home() {
                     <div className="flex flex-wrap gap-3 mt-6">
                       <button
                         onClick={() => setActiveDemo(p.id)}
-                        className="inline-flex items-center gap-1.5 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-4 py-2 text-xs font-semibold glow-hover"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-4 py-2 text-xs font-semibold"
                       >
                         <PlayCircle size={14} /> {t.featured.launchDemo}
                       </button>
@@ -146,7 +142,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="about" className="max-w-6xl mx-auto px-5 py-20 md:py-28 scroll-mt-20">
+        <section id="about" className="site-container py-20 md:py-28 scroll-mt-20">
           <Reveal>
             <div className="max-w-3xl">
               <div className="mono text-xs text-[var(--accent)]">{t.about.eyebrow}</div>
@@ -170,7 +166,7 @@ export default function Home() {
         </section>
 
         <section className="border-y border-[var(--border)] bg-[var(--surface-subtle)] py-20 md:py-28">
-          <div className="max-w-6xl mx-auto px-5">
+          <div className="site-container">
             <Reveal>
               <div className="mono text-xs text-[var(--accent)]">{t.experience.eyebrow}</div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-4 text-[var(--fg)]">
@@ -193,7 +189,7 @@ export default function Home() {
         </section>
 
         <section id="work" className="py-20 md:py-28 scroll-mt-20">
-          <div className="max-w-6xl mx-auto px-5">
+          <div className="site-container">
             <Reveal>
               <div className="mono text-xs text-[var(--accent)]">{t.work.eyebrow}</div>
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mt-4 text-[var(--fg)]">
@@ -225,7 +221,7 @@ export default function Home() {
                       </div>
                       <button
                         onClick={() => setActiveDemo(p.id)}
-                        className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full border border-cyan-300/30 text-[var(--accent)] px-3 py-2 text-xs font-semibold hover:bg-cyan-300/10 glow-hover w-fit"
+                        className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full border border-cyan-300/30 text-[var(--accent)] px-3 py-2 text-xs font-semibold hover:bg-cyan-300/10 w-fit"
                       >
                         <PlayCircle size={14} /> {t.work.launchDemo}
                       </button>
@@ -243,18 +239,17 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="approach" className="max-w-6xl mx-auto px-5 py-20 md:py-28 scroll-mt-20">
+        <section id="approach" className="site-container py-20 md:py-28 scroll-mt-20">
           <Reveal>
             <div className="mono text-xs text-[var(--accent)]">{t.approach.eyebrow}</div>
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mt-4 text-[var(--fg)]">
               {t.approach.titleLead}<span className="text-[var(--fg-subtle)]">{t.approach.titleHighlight}</span>
             </h2>
           </Reveal>
-          <Cube3D />
           <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {t.approach.steps.map((step, i) => (
               <Reveal key={step.title} delay={i * 0.03}>
-                <div className="rounded-2xl border border-[var(--border)] p-5 min-h-[150px] glow-hover">
+                <div className="rounded-2xl border border-[var(--border)] p-5 min-h-[150px]">
                   <div className="mono text-xs text-[var(--fg-subtle)]">{step.n}</div>
                   <div className="font-bold mt-5 text-[var(--fg)]">{step.title}</div>
                   <p className="text-xs text-[var(--fg-subtle)] mt-2 leading-relaxed">{step.desc}</p>
@@ -265,7 +260,7 @@ export default function Home() {
         </section>
 
         <section id="skills" className="border-y border-[var(--border)] bg-[var(--surface-subtle)] py-20 md:py-28 scroll-mt-20">
-          <div className="max-w-6xl mx-auto px-5">
+          <div className="site-container">
             <Reveal>
               <div className="mono text-xs text-[var(--accent)]">{t.skills.eyebrow}</div>
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mt-4 text-[var(--fg)]">
@@ -274,7 +269,7 @@ export default function Home() {
             </Reveal>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
               {t.skills.groups.map((group) => (
-                <div key={group.title} className="rounded-3xl border border-[var(--border)] p-6 glow-hover">
+                <div key={group.title} className="rounded-3xl border border-[var(--border)] p-6">
                   <h3 className="mono text-xs mt-1 text-[var(--fg-subtle)]">{group.title}</h3>
                   <div className="mt-5 space-y-2">
                     {group.items.map((item) => (
@@ -287,7 +282,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="max-w-6xl mx-auto px-5 py-20 md:py-28">
+        <section className="site-container py-20 md:py-28">
           <div className="rounded-[2rem] border border-cyan-300/15 bg-cyan-300/[.035] p-6 md:p-14">
             <div className="mono text-xs text-[var(--accent)]">{t.philosophy.eyebrow}</div>
             <blockquote className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight max-w-4xl mt-5 text-[var(--fg)]">{t.philosophy.quote}</blockquote>
@@ -296,20 +291,20 @@ export default function Home() {
         </section>
 
         <section id="contact" className="border-t border-[var(--border)] py-20 md:py-28 scroll-mt-20">
-          <div className="max-w-6xl mx-auto px-5">
+          <div className="site-container">
             <div className="max-w-4xl">
               <div className="mono text-xs text-[var(--accent)]">{t.contact.eyebrow}</div>
               <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mt-4 text-[var(--fg)]">{t.contact.title}</h2>
               <p className="text-lg md:text-xl text-[var(--fg-muted)] mt-6">{t.contact.description}</p>
               <div className="flex flex-wrap gap-3 mt-9">
-                <a href="mailto:frankynisso16@gmail.com" className="rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-6 py-3 font-semibold glow-hover">{t.contact.talk}</a>
-                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="rounded-full border px-5 py-3 glow-hover" style={{borderColor:"var(--whatsapp-border)",color:"var(--whatsapp-fg)"}}>
+                <a href="mailto:frankynisso16@gmail.com" className="rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-6 py-3 font-semibold">{t.contact.talk}</a>
+                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="rounded-full border px-5 py-3" style={{borderColor:"var(--whatsapp-border)",color:"var(--whatsapp-fg)"}}>
                   <WhatsappIcon className="inline mr-2" size={17} />{t.contact.whatsapp}
                 </a>
-                <a href="https://github.com/NissoStudios" target="_blank" rel="noopener noreferrer" className="rounded-full border border-[var(--border)] text-[var(--fg)] px-5 py-3 glow-hover">
+                <a href="https://github.com/NissoStudios" target="_blank" rel="noopener noreferrer" className="rounded-full border border-[var(--border)] text-[var(--fg)] px-5 py-3">
                   <GithubIcon className="inline mr-2" size={17} />{t.contact.github}
                 </a>
-                <a href="https://www.facebook.com/nisso.emmanuel.franky" target="_blank" rel="noopener noreferrer" className="rounded-full border border-[var(--border)] text-[var(--fg)] px-5 py-3 glow-hover">
+                <a href="https://www.facebook.com/nisso.emmanuel.franky" target="_blank" rel="noopener noreferrer" className="rounded-full border border-[var(--border)] text-[var(--fg)] px-5 py-3">
                   <FacebookIcon className="inline mr-2" size={17} />{t.contact.facebook}
                 </a>
               </div>

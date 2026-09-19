@@ -2,7 +2,7 @@
 import { useCallback, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ExternalLink, PlayCircle } from "lucide-react";
-import { SceneBackdrop, Reveal } from "../site/decor";
+import { Reveal, SceneBackdrop } from "../site/decor";
 import { SiteNav } from "../site/site-nav";
 import { SiteFooter, FloatingWhatsappButton } from "../site/site-footer";
 import { DemoModal } from "../site/demo-registry";
@@ -68,7 +68,7 @@ function ProjectCard({ project, onLaunch }: { project: ProjectCaseStudy; onLaunc
       <div className="flex flex-wrap gap-3 mt-8">
         <Link
           href={`/projects/${project.id}`}
-          className="inline-flex items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-5 py-2.5 text-sm font-semibold glow-hover"
+          className="inline-flex items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-5 py-2.5 text-sm font-semibold"
         >
           {t.featured.viewCaseStudy} <ArrowRight size={15} />
         </Link>
@@ -106,7 +106,7 @@ export function ProjectsClient() {
 
         <section className="min-h-[60vh] grid-bg flex items-center pt-28 pb-16 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_70%_35%,rgba(34,211,238,.10),transparent_30%)]" />
-          <div className="max-w-4xl mx-auto px-5 w-full">
+          <div className="site-container">
             <Link href="/" className="inline-flex items-center gap-2 text-sm text-[var(--fg-subtle)] hover:text-[var(--fg)] transition-colors mb-8">
               <ArrowLeft size={15} /> {t.projectsPage.backHome}
             </Link>
@@ -118,11 +118,11 @@ export function ProjectsClient() {
           </div>
         </section>
 
-        <section className="max-w-4xl mx-auto px-5 pb-10">
+        <section className="site-container pb-10">
           <Reveal>
             <div className="mono text-xs text-[var(--accent)] mb-6">{t.projectsPage.featuredLabel}</div>
           </Reveal>
-          <div className="grid gap-6">
+          <div className="grid gap-6 xl:grid-cols-2">
             {featuredProjects.map((project, i) => (
               <Reveal key={project.id} delay={i * 0.06}>
                 <ProjectCard project={project} onLaunch={setActiveDemo} />
@@ -131,11 +131,11 @@ export function ProjectsClient() {
           </div>
         </section>
 
-        <section className="max-w-4xl mx-auto px-5 py-10">
+        <section className="site-container py-10">
           <Reveal>
             <div className="mono text-xs text-[var(--fg-subtle)] mb-6">{t.projectsPage.otherLabel}</div>
           </Reveal>
-          <div className="grid gap-6">
+          <div className="grid gap-6 xl:grid-cols-2">
             {otherProjects.map((project, i) => (
               <Reveal key={project.id} delay={i * 0.05}>
                 <ProjectCard project={project} onLaunch={setActiveDemo} />

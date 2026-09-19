@@ -16,7 +16,7 @@ import {
 import { projects } from "../../lib/projects-data";
 import { projectDetails } from "../../lib/project-details";
 import { useLanguage } from "../site/language-context";
-import { SceneBackdrop, Reveal } from "../site/decor";
+import { Reveal, SceneBackdrop } from "../site/decor";
 import { SiteNav } from "../site/site-nav";
 import { SiteFooter, FloatingWhatsappButton } from "../site/site-footer";
 import { DemoModal } from "../site/demo-registry";
@@ -82,7 +82,7 @@ export function ProjectDetailClient({ projectId }: { projectId: string }) {
 
         <section className="grid-bg min-h-[72vh] flex items-center pt-28 pb-20 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_72%_30%,rgba(34,211,238,.12),transparent_30%)]" />
-          <div className="max-w-5xl mx-auto px-5 w-full">
+          <div className="site-container">
             <Link
               href="/projects"
               className="inline-flex items-center gap-2 text-sm text-[var(--fg-subtle)] hover:text-[var(--fg)] transition-colors mb-10"
@@ -118,7 +118,7 @@ export function ProjectDetailClient({ projectId }: { projectId: string }) {
             <div className="flex flex-wrap gap-3 mt-10">
               <button
                 onClick={() => setActiveDemo(project.demoId)}
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-6 py-3 font-semibold glow-hover"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] px-6 py-3 font-semibold"
               >
                 <PlayCircle size={17} /> {copy.demo}
               </button>
@@ -134,7 +134,7 @@ export function ProjectDetailClient({ projectId }: { projectId: string }) {
           </div>
         </section>
 
-        <section className="max-w-5xl mx-auto px-5 py-20 md:py-28">
+        <section className="site-container py-20 md:py-28">
           <Reveal>
             <div className="grid md:grid-cols-[.7fr_1.3fr] gap-8 md:gap-16">
               <div>
@@ -163,7 +163,7 @@ export function ProjectDetailClient({ projectId }: { projectId: string }) {
         </section>
 
         <section className="border-y border-[var(--border)] bg-[var(--surface-subtle)] py-20 md:py-28">
-          <div className="max-w-5xl mx-auto px-5">
+          <div className="site-container">
             <Reveal>
               <div className="flex items-center gap-3">
                 <Route aria-hidden="true" size={20} className="text-[var(--accent)]" />
@@ -187,7 +187,7 @@ export function ProjectDetailClient({ projectId }: { projectId: string }) {
           </div>
         </section>
 
-        <section className="max-w-5xl mx-auto px-5 py-20 md:py-28">
+        <section className="site-container py-20 md:py-28">
           <div className="grid lg:grid-cols-2 gap-12">
             <Reveal>
               <div>
@@ -228,7 +228,7 @@ export function ProjectDetailClient({ projectId }: { projectId: string }) {
         </section>
 
         <section className="border-y border-[var(--border)] bg-[var(--surface-subtle)] py-20 md:py-28">
-          <div className="max-w-5xl mx-auto px-5 grid lg:grid-cols-[1.15fr_.85fr] gap-12">
+          <div className="site-container grid lg:grid-cols-[1.15fr_.85fr] gap-12">
             <Reveal>
               <div>
                 <h2 className="mono text-xs text-[var(--accent)]">{copy.learned}</h2>
@@ -263,14 +263,14 @@ export function ProjectDetailClient({ projectId }: { projectId: string }) {
           </div>
         </section>
 
-        <nav aria-label="Project navigation" className="max-w-5xl mx-auto px-5 py-16 grid sm:grid-cols-2 gap-4">
+        <nav aria-label="Project navigation" className="site-container py-16 grid sm:grid-cols-2 gap-4">
           <Link
             href={`/projects/${previous.id}`}
             className="glass rounded-2xl p-6 group hover:border-[var(--border-strong)] transition-colors"
           >
             <span className="mono text-[10px] text-[var(--fg-subtle)]">{copy.previous}</span>
             <div className="flex items-center gap-2 mt-2 font-bold text-[var(--fg)]">
-              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft size={16} />
               {previous.title}
             </div>
           </Link>
@@ -281,7 +281,7 @@ export function ProjectDetailClient({ projectId }: { projectId: string }) {
             <span className="mono text-[10px] text-[var(--fg-subtle)]">{copy.next}</span>
             <div className="flex items-center justify-end gap-2 mt-2 font-bold text-[var(--fg)]">
               {next.title}
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} />
             </div>
           </Link>
         </nav>
